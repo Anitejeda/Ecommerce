@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import loginService from '../../services/loginService';
+import { logInState, updateToken, updateUserData } from '../../store/slices/user.slice';
+import { useDispatch } from 'react-redux';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [toggleType, setToggleType] = useState('password');
   const [loginFormData, setLoginFormData] = useState({
     email: '',
@@ -24,7 +27,18 @@ const LoginForm = () => {
 
   const login = async () => {
     const loginData = await loginService(loginFormData);
-    console.log(loginData);
+    const userData = {
+      id: loginData.user.id,
+      firstName: loginData.user.firstName,
+      lastName: loginData.user.lastName,
+      email: loginData.user.email,
+    };
+
+    const token = loginData.token;
+
+    dispatch(updateUserData(userData));
+    dispatch(updateToken(token));
+    dispatch(logInState(userData));
   };
 
   const handleSubmit = (e) => {

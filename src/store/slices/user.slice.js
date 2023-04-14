@@ -6,16 +6,16 @@ const emptyState = {
   lastName: '',
   email: '',
   token: '',
-  isLoged: false,
+  isLogged: false,
 };
 
 const initialStateLocalStorage = JSON.parse(localStorage.getItem('userData'));
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: initialStateLocalStorage ? initialStateLocalStorage : emptyState,
+  initialState: initialStateLocalStorage || emptyState,
   reducers: {
-    updateUserData(state, action){
+    updateUserData(state, action) {
       const newUserData = action.payload;
       const stateLocalStorage = structuredClone({ ...state });
 
@@ -32,7 +32,7 @@ const userSlice = createSlice({
       localStorage.setItem('userData', JSON.stringify(stateLocalStorage));
     },
 
-    updateToken(state, action){
+    updateToken(state, action) {
       const newToken = action.payload;
       const stateLocalStorage = structuredClone({ ...state });
 
@@ -43,24 +43,24 @@ const userSlice = createSlice({
       localStorage.setItem('userData', JSON.stringify(stateLocalStorage));
     },
 
-    logIn(state){
+    logInState(state) {
       const stateLocalStorage = structuredClone({ ...state });
-      
-      state.isLoged = true;
-      stateLocalStorage.isLoged = true;
+
+      state.isLogged = true;
+      stateLocalStorage.isLogged = true;
 
       localStorage.removeItem('userData');
       localStorage.setItem('userData', JSON.stringify(stateLocalStorage));
     },
 
-    reset(){
+    reset() {
       //NO SE PUEDE HACER UNA ASIGNACION DIRECTA DE STATE
       localStorage.removeItem('userData');
       return emptyState;
-    }
+    },
   },
 });
 
-export const { updateUserData, updateToken, logIn, reset } = userSlice.actions;
+export const { updateUserData, updateToken, logInState, reset } = userSlice.actions;
 
 export default userSlice.reducer;

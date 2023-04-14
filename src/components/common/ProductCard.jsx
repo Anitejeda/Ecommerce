@@ -13,8 +13,12 @@ const ProductCard = ({ product }) => {
   return (
     <Link to={`/products/${product.id}`}>
       <article key={product.id} className="cursor-pointer">
-        <div className="max-w-[250px]">
-          <img src={product.productImgs[0]} alt={product.title} />
+        <div className="max-w-[250px] max-h-[250px]">
+          <img
+            src={product.images[0].url}
+            alt={product.title}
+            className="max-w-[250px] max-h-[250px]"
+          />
         </div>
         <div>
           <h2 className="text-semibold text-xl">{product.title}</h2>

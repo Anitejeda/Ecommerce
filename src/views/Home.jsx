@@ -38,8 +38,10 @@ const Home = () => {
           ))}
           <button
             type="submit"
-            className='className="f;ex flex-row justify-center items-center p-2 bg-orange-400 rounded-xl"'
-          ></button>
+            className="flex flex-row justify-center items-center p-2 bg-orange-400 rounded-xl"
+          >
+            Filter
+          </button>
         </Form>
       </section>
 
