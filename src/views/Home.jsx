@@ -39,7 +39,10 @@ const Home = () => {
               placeholder="Type product name"
               value={nameValue}
               onChange={(e) => handleNameValue(e)}
-              onClick={() => setNameValue('')}
+              onClick={() => {
+                setNameValue('');
+                setCategoryValue('');
+              }}
             />
           </div>
           <legend>Category</legend>
