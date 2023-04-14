@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductCard from '../components/common/ProductCard';
 import { reset } from '../store/slices/user.slice';
-import { Form, Navigate, useLoaderData } from 'react-router-dom';
+import { Form, useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 
 const Home = () => {
@@ -21,23 +21,21 @@ const Home = () => {
 
       <section>
         <Form>
-          <fieldset>
-            <legend>Category</legend>
-            {categories.map((category) => (
-              <div key={category.id}>
-                <label htmlFor={category.id + category.name}>{category.name}</label>
-                <input
-                  type="radio"
-                  name="category"
-                  value={category.id}
-                  checked={categoryValue?.id == category.id}
-                  id={category.id + category.name}
-                  onChange={() => setCategoryValue(category)}
-                  //style={{ display: 'none' }}
-                />
-              </div>
-            ))}
-          </fieldset>
+          <legend>Category</legend>
+          {categories.map((category) => (
+            <div key={category.id}>
+              <label htmlFor={category.id + category.name}>{category.name}</label>
+              <input
+                type="radio"
+                name="category"
+                value={category.id}
+                checked={categoryValue?.id == category.id}
+                id={category.id + category.name}
+                onChange={() => setCategoryValue(category)}
+                //style={{ display: 'none' }}
+              />
+            </div>
+          ))}
           <button
             type="submit"
             className='className="f;ex flex-row justify-center items-center p-2 bg-orange-400 rounded-xl"'
