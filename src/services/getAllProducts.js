@@ -4,8 +4,8 @@ export const getAllProducts = async (params) => {
   try {
     const res = await axiosInstance.get('/products', {
       params: {
-        category: params?.category,
-        query: params?.query,
+        title: params?.title,
+        categoryId: params?.category,
       },
     });
     return res.data;

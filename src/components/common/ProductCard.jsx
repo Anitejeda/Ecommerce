@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
           </div>
           <button
             onClick={handleAddProductBtn}
-            className="flex flex-row justify-center items-center text-3xl p-2 bg-orange-400 hover:bg-orange-300 rounded-lg"
+            className="flex flex-row justify-center items-center text-3xl p-2 bg-orange-400 hover:bg-orange-300 transition-all duration-200 rounded-lg"
           >
             <i className="bx bx-cart-add"></i>
           </button>

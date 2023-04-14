@@ -4,14 +4,23 @@ import { getCategories } from '../../services/getCategories';
 export const loaderHome = async ({ request }) => {
   const categories = await getCategories();
   const url = new URL(request.url);
-  const category = url.searchParams.get('category');
+  const categoryId = url.searchParams.get('category');
+  const title = url.searchParams.get('title');
   let products;
 
-  if (category) {
-    products = await getAllProducts({ category });
+  if (categoryId || title) {
+    products = await getAllProducts({
+      category: categoryId,
+      title,
+    });
   } else {
     products = await getAllProducts();
   }
-  console.log(category);
-  return { products, categories };
+
+  return {
+    products,
+    categories,
+    category: categories.find((x) => x.id.toString() == categoryId),
+    title,
+  };
 };
